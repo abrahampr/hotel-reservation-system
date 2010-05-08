@@ -10,7 +10,7 @@
     </head>
     <body>
         <div align="center">
-            <table width="1024" border="0" bgcolor="#FFFFFF">
+            <table id="indextable" width="1024" border="0" bgcolor="#FFFFFF">
                 <tr>
                     <td align="center" height="100" colspan="2">
                         <img src="image/logo.jpg" width="1020" height="150" alt="">
@@ -19,23 +19,23 @@
                 <tr>
                     <td id="sidebar" width="200" bgcolor="#CCCCCC">
                         <%if(session.getAttribute("username")==null && session.getAttribute("adminusername")==null && session.getAttribute("adminroot")==null){%>
-       <table id="sidebar" width="200" align="center"><tr><td id="navigator"><strong>Welcome, Guest :<br>
+       <table id="sidebar" width="200"><tr><td id="navigator"><strong>Welcome, Guest :<br>
        </strong></td></tr>
                         <tr><td id="menu"><a href=login.jsp>Sign in</a></td></tr>
                         <tr><td id="menu"><a href="reg.jsp">Sign up</a></td></tr></table>
                     <%}else if(session.getAttribute("username")!=null){%>
                         <%String username = (String)session.getAttribute("username");%>
-                        <table id="sidebar" width="200" align="center"><tr><td id="navigator"><strong>Welcome,
+                        <table id="sidebar" width="200" align="center" ><tr><td id="navigator"><strong>Welcome,
                         <%out.println(username);%> 
                         :</strong></td></tr>
                         <tr><td id="menu"><a href=useredit.jsp>Edit my profile</a></td></tr>
                         <tr><td id="menu"><a href=userorder.jsp>My Order</a></td></tr>
-                        <tr><td id="menu"><a href=orderserv?action=order>check order status</a></td></tr>
+                        <tr><td id="menu"><a href=orderserv?action=order>Check order status</a></td></tr>
                         <tr><td id="menu"><a href=logoutserv?action=logout>Logout</a></td></tr></table>
 
                     <%} else if(session.getAttribute("adminusername")!=null){ %>
                         <%String adminusername = (String)session.getAttribute("adminusername");%>
-                        <table id="sidebar" width="200" align="center"><tr><td id="navigator"><strong>Welcome,
+                        <table id="sidebar" width="200" align="center" ><tr><td id="navigator"><strong>Welcome,
                         <%out.println(adminusername);%>
                         :</strong></td></tr>
                         <tr><td id="menu"><a href=listserv?action=adminList&&groupid=0>manage room</a></td></tr>
@@ -53,12 +53,12 @@
                         <%}%>
                   </td>
                     <td width="808" height="300">
-                        <table id="main" width="90%" height="151" border="0" align="center" bgcolor="#CCCCCC">
+                        <table id="main" width="90%" border="0" align="center">
                             <%Vector<String[]> v = database.getGroup();
                                         for (String[] s : v) {%>
                                         <tr><td align="center" width="150" rowspan="2"><img alt="RoomPic" src="<%=s[4]%>"/></td>
                        					  <td id="maintitle" height="30" ><%=s[1]%></td>
-                       					  <td width="150" rowspan="2" ><a href=listserv?action=list&&groupid=<%=s[0]%>>reservation a room!>></a></td>
+                                                          <td width="150" rowspan="2" ><a href=listserv?action=list&&groupid=<%=s[0]%>><img alt="reservation this room" src="image/RTR.png" /></a></td>
                        					</tr>
                                         <tr>
                                             <td id="maincontent" width="300"><%=s[2]%></td>
@@ -71,7 +71,7 @@
                 <tr bgcolor="#CCCCFF">
                 <td align="center" colspan="2">
                 <hr>
-                <p>Copy Right by Group 16</p></td>
+                <p>Copyright © 2010 Group16. All Rights Reserved.</p></td>
                 </tr>
             </table>
         </div>

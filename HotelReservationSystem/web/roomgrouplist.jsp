@@ -21,8 +21,8 @@
     <table>
     <tr>
     	<td>
-        <table border="1" align="center">
-            <tr bgcolor="#666666">
+        <table border="0" align="center">
+            <tr bgcolor="#ccccff">
                 <th id="thlabel">Room</th>
                 <th id="thlabel">type</th>
                 <th id="thlabel">price</th>
@@ -75,12 +75,20 @@
         <table>
             <tr>
                 <td>
-                    <font>
-			reservation rules for <%= groupname%>:<br>
+                    <table>
+                        <tr>
+                            <td bgcolor="#ccccff"><strong>
+			Reservation rules for <%= groupname%>:<br></strong>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td>
 			1.please input correct reservation time<br>
 			2.please check out the information about the room<br>
 			3.<%= grouprules%>
-                    </font>
+                        <td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
         </table>

@@ -1,8 +1,3 @@
-<%-- 
-    Document   : login
-    Author     : Liu Chun(HTML) Wang QiChen(JSP)
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" import="java.util.*"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -33,6 +28,7 @@
     </head>
     <body>
         <div align="center">
+            <div id="widthdiv">
         <fieldset><legend>Login your account</legend>
             <table width="200" border="0">
                 <form  name="login" action="loginserv" method="post">
@@ -57,7 +53,7 @@
                         <input type="button" name="back" id="back" value="back" onclick="window.location.href='index.jsp'"></td>
                     </tr>
                 </form>
-            </table></fieldset>
+            </table></fieldset></div>
         </div>
 
     </body>

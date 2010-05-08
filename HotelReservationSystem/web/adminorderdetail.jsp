@@ -31,7 +31,12 @@
 	   <td><%= s[3] %></td>
 	</tr><%}%>
    </table>
-     <input type="button" name="back" id="back" value="back" onclick="window.location.href='orderserv?action=allOrders&&condition=1'">
- </div>
+   <%if(session.getAttribute("username")!=null) {%>
+     <input type="button" name="back" id="back" value="back" onclick="window.location.href='orderserv?action=order'">
+       <%}else{%>
+<input type="button" name="back" id="back" value="back" onclick="window.location.href='orderserv?action=allOrders&&condition=1'">
+              <%}%>
+
+             </div>
  </body>
 </html>

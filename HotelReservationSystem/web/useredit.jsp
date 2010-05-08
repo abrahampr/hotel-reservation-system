@@ -1,8 +1,3 @@
-<%-- 
-    Document   : edituser
-    Author     : Tang Wan Jian(HTML) Wang Qi Chen(JSP)
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" import="java.util.*"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Edid your profile</title>
         <link href="css/styleHRS.css" type="text/css" rel="stylesheet">
         <script language="Javascript">
             function checkpassword(){
@@ -34,7 +29,7 @@
         </script>
     </head>
     <body>
-        <div align="center"><fieldset><legend>change your password</legend>
+        <div align="center"><div id="widthdiv"><fieldset><legend>change your password</legend>
             <table width="300" border="0">
                 <form name="changepassword" action="changepasswordserv" method="post">
                 <tr>
@@ -76,8 +71,8 @@
                             </select>
                         </label></td>
                 </tr>
-                <tr id="label">
-                    <td>email:</td>
+                <tr>
+                    <td  id="label">email:</td>
                     <td><label>
                             <input type="text" name="email" id="email">
                         </label></td>
@@ -99,6 +94,7 @@
                     </label></td>
                 </tr></form>
             </table></fieldset>
+                </div>
         </div>
 
     </body>

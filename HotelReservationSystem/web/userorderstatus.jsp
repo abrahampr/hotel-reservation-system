@@ -7,6 +7,7 @@
    <title>orderstatus</title>
     <link href="css/styleHRS.css" type="text/css" rel="stylesheet">
  </head>
+ <div align="center">
  <body>
    <%Vector<String[]> list = (Vector<String[]>)request.getAttribute("list");
     if(list==null||list.size()==0){
@@ -15,28 +16,33 @@
       out.println("<br><br><a href=index.jsp>return");
     }else{%>
   <table>
-	 <tr>
-	   <th>ID</th>
-           <th>user</th>
-	   <th>ordertime</th>
-           <th>status</th>
-	   <th>execute admin</th>
-           <th>Details</th>
-           <th>PS</th>
+      <tr bgcolor="ccccff">
+            <th id="thlabel">ID</th>
+           <th id="thlabel">user</th>
+	   <th id="thlabel">ordertime</th>
+           <th id="thlabel">status</th>
+	   <th id="thlabel">execute admin</th>
+           <th id="thlabel">Details</th>
+           <th id="thlabel">PS</th>
 	 </tr>
 	   <%int color = 0;
 	  	 for(int i=0;i<list.size();i++){
 		   String[] s = list.get(i);%>
-     <tr>
-	   <td align="center"><%= s[0] %></td>
-           <td align="center"><%= s[1] %></td>
-	   <td align="center"><%= s[2] %></td>
-           <td align="center"><%= s[4] %></td>
-	   <td align="center"><%= s[3] %></td>
-	   <td align="center">
+          <tr align="center">
+	   <td><%= s[0] %></td>
+           <td><%= s[1] %></td>
+	   <td><%= s[2] %></td>
+           <td><%= s[4] %></td>
+	   <td><%= s[3] %></td>
+	   <td>
 	    <a target="blank" href=orderserv?action=ListDetail&&orderid=<%= s[0] %>>order detail</a>
 	   </td>
 	   <td align="center"><%= s[5] %></td>
 	</tr><%}%>
-   </table><%}%>
+   </table>
+   <%}%>
+ <center><a href="index.jsp">return</a></center
+ </div>
+
  </body>
+</html>

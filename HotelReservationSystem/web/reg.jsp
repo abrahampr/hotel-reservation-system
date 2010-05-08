@@ -40,7 +40,8 @@
     </head>
     <body>
         <div align="center">
-        <fieldset><legend>Create your accout</legend>
+            <div id="widthdiv">
+        <fieldset><legend>Create your account</legend>
             <table width="200" border="0">
                 <form name="reg" action="regserv" method="post">
                     <tr>
@@ -91,7 +92,7 @@
                         </label></td>
                     </tr>
                 </form>
-            </table></fieldset>
+            </table></fieldset></div>
         </div>
         <h1>&nbsp;</h1>
     </body>
