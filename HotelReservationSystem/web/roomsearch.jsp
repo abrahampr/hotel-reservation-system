@@ -43,7 +43,7 @@
 
                                     <td align="right">Room:
                                         <input type="text" name="roomname">
-                                        <input type="button" value="search" onclick="check()">
+                                        <input type="button" value="search" onclick="return check()">
                                         <input type="hidden" name="action" value="searchRoom">
                                     </td>
                                 </tr>

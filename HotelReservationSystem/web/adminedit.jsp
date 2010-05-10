@@ -57,7 +57,7 @@
                             <td></td>
                             <td><label>
                                     <input type="hidden" name="action" value="adminedit">
-                                    <input type="submit" name="submit" id="submit" value="submit" onclick="checkadmininformation()">
+                                    <input type="submit" name="submit" id="submit" value="submit" onclick="return checkadmininformation()">
                                     <input type="button" name="back" id="back" value="back" onclick="window.location.href='index.jsp'">
                                 </label></td>
                         </tr></form>

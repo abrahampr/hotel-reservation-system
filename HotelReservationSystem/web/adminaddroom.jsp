@@ -124,7 +124,7 @@
                                     <tr><td></td>
                                         <td align="left">
                                             <input type="hidden" name="action" value="addRes">
-                                            <input type="submit" value="save" onclick="checkadminaddroom()">
+                                            <input type="submit" value="save" onclick="return checkadminaddroom()">
                                             <input type="reset" value="reset">
                                             <label>
                                                 <input type="button" name="back" id="back" value="back" onclick="window.location.href='index.jsp'">

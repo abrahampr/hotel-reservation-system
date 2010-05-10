@@ -31,7 +31,7 @@
             <form name="searchorder" action="orderserv" method="post">
 	    <input type="hidden" name="action" value="searchOrder">
 	    <input type="text" name="orderid">
-	    <input type="button" value="search" onclick="check()">
+	    <input type="button" value="search" onclick="return check()">
             </form>
 
 	   </td>

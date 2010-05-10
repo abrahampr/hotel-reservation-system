@@ -47,7 +47,7 @@
                             <td>&nbsp;</td>
                             <td><label>
                                     <input type="hidden" name="action" value="adminadd">
-                                    <input type="submit" name="submit" id="submit" value="submit" onclick="checkadminreg()">
+                                    <input type="submit" name="submit" id="submit" value="submit" onclick="return checkadminreg()">
                                     <input type="button" name="back" id="back" value="back" onclick="window.location.href='adminmanage.jsp'">
                                 </label></td>
                         </tr></form>

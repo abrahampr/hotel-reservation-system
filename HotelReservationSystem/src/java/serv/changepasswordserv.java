@@ -28,7 +28,7 @@ public class changepasswordserv extends HttpServlet{
 				String sqlb = "update user set password='"+newpassword+"'where username='"+
 								username+"'";
 				database.update(sqlb);
-				msg = "Success! please login your account with new password next time.<br>";
+				msg = "Success! please login your account with new password next time.<br><a href=index.jsp>return</a>";
 			}
 			else{
 				msg = "Wrong value!<br>"+

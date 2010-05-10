@@ -28,7 +28,7 @@ public class changeinfoserv extends HttpServlet{
 			String sql="update user set realname ='"+realname+"',gender='"+gender+
 			   "',email='"+email+"',telephone="+telephone+" where username='"+username+"'";
 			if(database.update(sql)==1){
-				msg = "Success! Your profile has been changed.<br>";
+				msg = "Success! Your profile has been changed.<br><a href=index.jsp>return</a>";
 				httpservletrequest.setAttribute("msg",msg);
 				httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest,httpservletresponse);
         }    } }

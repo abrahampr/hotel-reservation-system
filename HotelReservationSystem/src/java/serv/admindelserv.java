@@ -30,7 +30,7 @@ if(action.equals("deladmin")){
 			else{
 				String sql = "delete from admin where adminusername='"+cadminusername+"'";
 				database.update(sql);
-				msg = "delete!";
+				msg = "delete!<a href=adminmanage.jsp>return</a>";
 			}
 			httpservletrequest.setAttribute("msg",msg);
                         httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest, httpservletresponse);

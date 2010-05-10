@@ -47,7 +47,7 @@
                             <td></td>
                             <td><label>
                                     <input type="hidden" name="action" value="adminlogin">
-                                    <input type="submit" name="submit" id="submit" value="submit" onclick="checkinformation()">
+                                    <input type="submit" name="submit" id="submit" value="submit" onclick="return checkinformation()">
                                 </label>
                                 <label>
                                     <input type="button" name="back" id="back" value="back" onclick="window.location.href='index.jsp'">

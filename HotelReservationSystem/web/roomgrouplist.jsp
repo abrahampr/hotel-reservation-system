@@ -15,6 +15,23 @@
     <head>
         <title>Rservation list for <%=groupname%></title>
         <link href="css/styleHRS.css" type="text/css" rel="stylesheet">
+        <script language="JavaScript" type="text/javascript">
+            function checktime(){
+                if(document.order.startyear.value>document.order.finishyear.value){
+                    alert ("year time is not correct!");
+                    return false;
+                }
+                if(document.order.startyear.value==document.order.finishyear.value && document.order.startmonth.value>document.order.finishmonth.value){
+                    alert ("month time is not correct!");
+                    return false;
+                }
+                if(document.order.startyear.value==document.order.finishyear.value && document.order.startmonth.value==document.order.finishmonth.value && document.order.startday.value>=document.order.finishday.value){
+                    alert ("start day must not same as end day!");
+                    return false;
+                }
+                document.add.submit();
+            }
+        </script>
     </head>
     <body><div align="center">
             <table>
@@ -152,7 +169,7 @@
                                                             if (i != day) {%>
                                             <option><%=i%></option>
                                             <%
-                                                                                        } else {
+                                                                                                        } else {
                                             %>
                                             <option selected><%=i%></option>
                                             <%
@@ -241,7 +258,7 @@
                                     <td></td>
                                     <td>
                                         <input type="hidden" name="action" value="add">
-                                        <input type="submit" name="add" value="add to order">
+                                        <input type="submit" name="add" value="add to order" onclick="return checktime()">
                                         <input type="button" name="back" id="back" value="back" onclick="window.location.href='index.jsp'"></td>
                                 </tr>
                             </form>

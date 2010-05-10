@@ -69,7 +69,7 @@
                                     <td>Room:
                                         <form name="searchRes" action="listserv" method="post">
                                             <input type="text" name="roomname">
-                                            <input type="button" value="check" onclick="check()">
+                                            <input type="button" value="check" onclick="return check()">
                                             <input type="hidden" name="action2" value="queryRes">
                                         </form></td>
                                 </tr>

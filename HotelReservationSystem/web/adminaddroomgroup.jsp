@@ -73,7 +73,7 @@
                         <tr><td></td>
                             <td>
                                 <input type="hidden" name="action" value="addGroup">
-                                <input type="submit" value="add" onclick="check()">
+                                <input type="submit" value="add" onclick="return check()">
                                 <input type="reset" value="reset">
                                 <label>
                                     <input type="button" name="back" id="back" value="back" onclick="window.location.href='index.jsp'">

@@ -21,6 +21,8 @@ public class loginserv extends HttpServlet {
 //login functions
         if (action.equals("login")) {
             httpsession.removeAttribute("username");
+            httpsession.removeAttribute("adminusername");
+            httpsession.removeAttribute("adminroot");
             String username = httpservletrequest.getParameter("username").trim();
             String pserwd = httpservletrequest.getParameter("password").trim();
             String sqla = "select * from user where username='" + username + "'";
@@ -47,33 +49,33 @@ public class loginserv extends HttpServlet {
 
         }
 //admin login function
-       if(action.equals("adminlogin")){
-			httpsession.removeAttribute("adminusername");
-                        String root="root";
-                        String Advanced="advanced";
-			String adminusername = httpservletrequest.getParameter("username").trim();
-			String adminpwd =  httpservletrequest.getParameter("password").trim();
-			String sqla = "select adminpassword from admin where adminusername='"+adminusername+"'";
-			String dbpwd = database.getInfo(sqla);
-			if(dbpwd!=null&&adminpwd.equals(dbpwd)){
-                            String sqlb = "select authority from admin where adminusername='"+adminusername+"'";
-                            String authority = database.getInfo(sqlb);
+        if (action.equals("adminlogin")) {
+            httpsession.removeAttribute("username");
+            httpsession.removeAttribute("adminusername");
+            httpsession.removeAttribute("adminroot");
+            String root = "root";
+            String Advanced = "advanced";
+            String adminusername = httpservletrequest.getParameter("username").trim();
+            String adminpwd = httpservletrequest.getParameter("password").trim();
+            String sqla = "select adminpassword from admin where adminusername='" + adminusername + "'";
+            String dbpwd = database.getInfo(sqla);
+            if (dbpwd != null && adminpwd.equals(dbpwd)) {
+                String sqlb = "select authority from admin where adminusername='" + adminusername + "'";
+                String authority = database.getInfo(sqlb);
 //check the admin authority
-                            if(authority.equals(root.intern())){
-				httpsession.setAttribute("adminroot",adminusername);
-                            httpservletresponse.sendRedirect("index.jsp");
-                            } else if(authority.equals(Advanced.intern())){
-                                httpsession.setAttribute("adminusername",adminusername);
-                            httpservletresponse.sendRedirect("index.jsp");
-                            }
-			}
-			else{
-				msg = "login error!<br><br>"+
-				 		"<a href=adminlogin.jsp>login again?";
-			httpservletrequest.setAttribute("msg",msg);
-			httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest,httpservletresponse);
-		}
+                if (authority.equals(root.intern())) {
+                    httpsession.setAttribute("adminroot", adminusername);
+                    httpservletresponse.sendRedirect("index.jsp");
+                } else if (authority.equals(Advanced.intern())) {
+                    httpsession.setAttribute("adminusername", adminusername);
+                    httpservletresponse.sendRedirect("index.jsp");
+                }
+            } else {
+                msg = "login error!<br><br>"
+                        + "<a href=adminlogin.jsp>login again?";
+                httpservletrequest.setAttribute("msg", msg);
+                httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest, httpservletresponse);
+            }
+        }
     }
-        			}
-
 }

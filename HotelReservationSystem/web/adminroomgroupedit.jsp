@@ -75,7 +75,7 @@
                                 <input type="hidden" name="action" value="deleteGroup">
                                 <input type="hidden" name="groupid" value=<%= groupinfo.get(0)%> >
                                 <input type="hidden" name="oldgroupname" value=<%= groupinfo.get(1)%>>
-                                <input type="button" value="save" onclick="check()">
+                                <input type="button" value="save" onclick="return check()">
                                 <input type="submit" value="delete">
                                 <input type="button" name="back" id="back" value="back" onclick="window.location.href='adminroomgroup.jsp'"></td>
                         </tr>

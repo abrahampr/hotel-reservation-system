@@ -46,7 +46,7 @@
                                     <form name="search" action="listserv" method="post">
                                         <input type="text" name="roomname">
                                         <input type="hidden" name="action" value="searchRoom">
-                                        <input type="button" value="check" onclick="check()">
+                                        <input type="button" value="check" onclick="return check()">
 
                                     </form>
                                 </td>
