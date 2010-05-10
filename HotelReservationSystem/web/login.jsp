@@ -29,31 +29,31 @@
     <body>
         <div align="center">
             <div id="widthdiv">
-        <fieldset><legend>Login your account</legend>
-            <table width="200" border="0">
-                <form  name="login" action="loginserv" method="post">
-                    <tr>
-                        <td id="label">username:</td>
-                        <td><label>
-                                <input type="text" name="username" id="username">
-                            </label></td>
-                    </tr>
-                    <tr>
-                        <td id="label">password:</td>
-                        <td><label>
-                                <input type="password" name="password" id="password">
-                            </label></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><label>
-                                <input type="hidden" name="action" value="login">
-                                <input type="submit" name="submit" id="submit" value="submit" onclick="checkinformation()">
-                            </label>
-                        <input type="button" name="back" id="back" value="back" onclick="window.location.href='index.jsp'"></td>
-                    </tr>
-                </form>
-            </table></fieldset></div>
+                <fieldset><legend>Login your account</legend>
+                    <table width="200" border="0">
+                        <form  name="login" action="loginserv" method="post">
+                            <tr>
+                                <td id="label">username:</td>
+                                <td><label>
+                                        <input type="text" name="username" id="username">
+                                    </label></td>
+                            </tr>
+                            <tr>
+                                <td id="label">password:</td>
+                                <td><label>
+                                        <input type="password" name="password" id="password">
+                                    </label></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><label>
+                                        <input type="hidden" name="action" value="login">
+                                        <input type="submit" name="submit" id="submit" value="submit" onclick="checkinformation()">
+                                    </label>
+                                    <input type="button" name="back" id="back" value="back" onclick="window.location.href='index.jsp'"></td>
+                            </tr>
+                        </form>
+                    </table></fieldset></div>
         </div>
 
     </body>

@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
         <link href="css/styleHRS.css" type="text/css" rel="stylesheet">
-        <script language="JavaScript">
+        <script language="JavaScript" type="text/javascript">
             function checkinformation(){
                 if(document.reg.username.value==""){
                     alert("plase input your username!");

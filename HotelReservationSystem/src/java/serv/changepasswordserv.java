@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package serv;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-/**
- *
- * @author Wang Qichen
- */
+
 public class changepasswordserv extends HttpServlet{
     public void init(ServletConfig servletconfig) throws ServletException {
         super.init(servletconfig);
@@ -25,6 +17,7 @@ public class changepasswordserv extends HttpServlet{
         HttpSession httpsession = httpservletrequest.getSession(true);
         PrintWriter printwriter = httpservletresponse.getWriter();
         String msg = "";
+//change password
         if (action.equals("changepassword")) {
 			String username=(String)httpsession.getAttribute("username");
 			String oldpassword = httpservletrequest.getParameter("oldpassword").trim();

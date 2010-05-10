@@ -1,16 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package serv;
+
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-/**
- *
- * @author Wang Qichen
- */
+
 public class changeinfoserv extends HttpServlet{
     public void init(ServletConfig servletconfig) throws ServletException {
         super.init(servletconfig);
@@ -25,6 +18,7 @@ public class changeinfoserv extends HttpServlet{
         HttpSession httpsession = httpservletrequest.getSession(true);
         PrintWriter printwriter = httpservletresponse.getWriter();
         String msg = "";
+//change th user information
         if (action.equals("changeinfo")) {
             String username=(String)httpsession.getAttribute("username");
 			String realname = httpservletrequest.getParameter("realname").trim();
@@ -32,7 +26,7 @@ public class changeinfoserv extends HttpServlet{
 			String email = httpservletrequest.getParameter("email");
 			String telephone = httpservletrequest.getParameter("telephone").trim();
 			String sql="update user set realname ='"+realname+"',gender='"+gender+
-			   "',email='"+email+"',telephone='"+telephone+"'where username='"+username+"'";
+			   "',email='"+email+"',telephone="+telephone+" where username='"+username+"'";
 			if(database.update(sql)==1){
 				msg = "Success! Your profile has been changed.<br>";
 				httpservletrequest.setAttribute("msg",msg);

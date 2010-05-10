@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package serv;
 
 import java.io.*;
@@ -22,14 +18,16 @@ public class listserv extends HttpServlet {
     public void doPost(HttpServletRequest httpservletrequest, HttpServletResponse httpservletresponse)
             throws ServletException, IOException {
         String action = httpservletrequest.getParameter("action");
-        HttpSession session = httpservletrequest.getSession(true);
+        HttpSession httpsession = httpservletrequest.getSession(true);
         String msg = "";
+//list the group infomation through gourpid
         if (action.equals("list")) {
             int groupid = Integer.parseInt(httpservletrequest.getParameter("groupid"));
             Vector<String> list = database.getGroupInfomation(groupid);
-            session.setAttribute("list", list);
+            httpsession.setAttribute("list", list);
             httpservletresponse.sendRedirect("roomgrouplist.jsp");
         }
+//check the room status
         if(action.equals("status")){
 			Vector<String []> v = null;
 			String isOrdered = "NO";
@@ -42,9 +40,10 @@ public class listserv extends HttpServlet {
 			httpservletrequest.setAttribute("isOrdered",isOrdered);
 			httpservletrequest.getRequestDispatcher("statussearch.jsp").forward(httpservletrequest,httpservletresponse);
 		}
+//list the group
         if(action.equals("adminList")){
 			Vector<String> list = new Vector<String>();
-			if(session.getAttribute("adminusername")!=null){
+			if(httpsession.getAttribute("adminusername")!=null){
 			    int groupid = Integer.parseInt(httpservletrequest.getParameter("groupid"));
 			    if(groupid==0){
 			    	list.add("0");
@@ -53,7 +52,7 @@ public class listserv extends HttpServlet {
 			    else{
 			    	list = database.getGroupInfomation(groupid);
 			    }
-				session.setAttribute("list",list);
+				httpsession.setAttribute("list",list);
 				httpservletresponse.sendRedirect("adminroom.jsp");
 			}
 			else{
@@ -62,6 +61,7 @@ public class listserv extends HttpServlet {
 				httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest,httpservletresponse);
 			}
 		}
+//add the room
         if(action.equals("addRes")){
 			String roomname = httpservletrequest.getParameter("roomname").trim();
 			String roomgroup = httpservletrequest.getParameter("roomgroup");
@@ -84,6 +84,7 @@ public class listserv extends HttpServlet {
 			httpservletrequest.setAttribute("msg",msg);
 			httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest,httpservletresponse);
 		}
+//get the room information and convinent to edit
         if(action.equals("editRes")){
 			int roomid = Integer.parseInt(httpservletrequest.getParameter("roomid"));
 			String sql = "select roomname,style,cost,details,status,roomgroup,roomid from room where roomid='"+roomid+"'";
@@ -91,6 +92,8 @@ public class listserv extends HttpServlet {
 			httpservletrequest.setAttribute("roominfo",roominfo);
 			httpservletrequest.getRequestDispatcher("adminroomedit.jsp").forward(httpservletrequest,httpservletresponse);
 		}
+
+//delete the room
         if(action.equals("deleteRes")){
 			String roomid = httpservletrequest.getParameter("roomid");
 			String sql = "delete from room where roomid='"+roomid+"'";
@@ -103,6 +106,7 @@ public class listserv extends HttpServlet {
                         httpservletrequest.setAttribute("msg",msg);
 			httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest,httpservletresponse);
 		}
+//edit the room
         if(action.equals("changeRes")){
 			String oldroomname = httpservletrequest.getParameter("oldroomname");
 			String newroomname = httpservletrequest.getParameter("newroomname");
@@ -134,8 +138,9 @@ public class listserv extends HttpServlet {
                         httpservletrequest.setAttribute("msg",msg);
 			httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest,httpservletresponse);
 		}
+//check the user if he/she is admin
         if(action.equals("adminGroup")){
-			if(session.getAttribute("adminusername")!=null){
+			if(httpsession.getAttribute("adminusername")!=null){
 				httpservletresponse.sendRedirect("adminroomgroup.jsp");
 			}
 			else{
@@ -144,6 +149,7 @@ public class listserv extends HttpServlet {
 				httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest,httpservletresponse);
 			}
 		}
+//add a group
         if(action.equals("addGroup")){
 			int groupid = database.getId("roomgroup","groupid");
 			String groupname = httpservletrequest.getParameter("groupname");
@@ -161,12 +167,14 @@ public class listserv extends HttpServlet {
 httpservletrequest.setAttribute("msg",msg);
 				httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest,httpservletresponse);
 		}
+//get the group information
         if(action.equals("editGroup")){
 			int groupid = Integer.parseInt(httpservletrequest.getParameter("groupid"));
 			Vector<String> groupinfo = database.getGroupInfomation(groupid);
 			httpservletrequest.setAttribute("groupinfo",groupinfo);
 			httpservletrequest.getRequestDispatcher("adminroomgroupedit.jsp").forward(httpservletrequest,httpservletresponse);
 		}
+//edit group
         if(action.equals("changeGroup")){
 		    int groupid = Integer.parseInt(httpservletrequest.getParameter("groupid"));
 		    String oldgroupname = httpservletrequest.getParameter("oldgroupname");
@@ -196,7 +204,8 @@ httpservletrequest.setAttribute("msg",msg);
 		   httpservletrequest.setAttribute("msg",msg);
 		httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest,httpservletresponse);
 		}
-		else if(action.equals("deleteGroup")){
+//delete the group
+	      if(action.equals("deleteGroup")){
 			int groupid = Integer.parseInt(httpservletrequest.getParameter("groupid"));
 			String sqla = "delete from room where roomgroup="+groupid;
 			String sqlb = "delete from roomgroup where groupid="+groupid;
@@ -209,6 +218,7 @@ httpservletrequest.setAttribute("msg",msg);
 			httpservletrequest.setAttribute("msg",msg);
                     httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest,httpservletresponse);
 		}
+//search the room
         if(action.equals("searchRoom")){
 			String roomname = httpservletrequest.getParameter("roomname");
 			String sql = "select roomname,style,cost,details,status,roomgroup,roomid from room where roomname='"+roomname+"'";

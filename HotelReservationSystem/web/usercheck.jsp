@@ -1,8 +1,3 @@
-<%-- 
-    Document   : usercheck
-    Author     : Wang Qi Chen
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" import="java.util.*"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,10 +8,11 @@
         <title>check</title>
     </head>
     <body><div align="center">
-        <%String message = (String) request.getAttribute("msg");
-                    if (message != null) {
-                        out.println(message);
-                    }
-        %></div>
+            <% //get the msg attribute and shows 
+                        String message = (String) request.getAttribute("msg");
+                        if (message != null) {
+                            out.println(message);
+                        }
+            %></div>
     </body>
 </html>

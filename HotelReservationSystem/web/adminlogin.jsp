@@ -1,8 +1,3 @@
-<%--
-    Document   : adminlogin
-    Author     : Liu Chun(HTML) Wang QiChen(JSP)
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" import="java.util.*"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -33,33 +28,33 @@
     </head>
     <body>
         <div align="center">
-        <fieldset><legend>Login your admin accout:</legend>
-            <table>
-                <form  name="adminlogin" action="loginserv" method="post">
-                    <tr>
-                        <td id="label">username:</td>
-                        <td><label>
-                                <input type="text" name="username" id="username">
-                            </label></td>
-                    </tr>
-                    <tr>
-                        <td id="label">password:</td>
-                        <td><label>
-                                <input type="password" name="password" id="password">
-                            </label></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><label>
-                                <input type="hidden" name="action" value="adminlogin">
-                                <input type="submit" name="submit" id="submit" value="submit" onclick="checkinformation()">
-                            </label>
-                        <label>
-                          <input type="button" name="back" id="back" value="back" onclick="window.location.href='index.jsp'">
-                        </label></td>
-                    </tr>
-                </form>
-            </table></fieldset>
+            <fieldset><legend>Login your admin account:</legend>
+                <table>
+                    <form  name="adminlogin" action="loginserv" method="post">
+                        <tr>
+                            <td id="label">username:</td>
+                            <td><label>
+                                    <input type="text" name="username" id="username">
+                                </label></td>
+                        </tr>
+                        <tr>
+                            <td id="label">password:</td>
+                            <td><label>
+                                    <input type="password" name="password" id="password">
+                                </label></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><label>
+                                    <input type="hidden" name="action" value="adminlogin">
+                                    <input type="submit" name="submit" id="submit" value="submit" onclick="checkinformation()">
+                                </label>
+                                <label>
+                                    <input type="button" name="back" id="back" value="back" onclick="window.location.href='index.jsp'">
+                                </label></td>
+                        </tr>
+                    </form>
+                </table></fieldset>
         </div>
 
     </body>

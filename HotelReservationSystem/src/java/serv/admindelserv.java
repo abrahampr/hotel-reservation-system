@@ -1,16 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package serv;
+
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-/**
- *
- * @author Administrator
- */
+
 public class admindelserv extends HttpServlet{
 
     public void init(ServletConfig servletconfig) throws ServletException {
@@ -26,6 +19,7 @@ public class admindelserv extends HttpServlet{
         HttpSession httpsession = httpservletrequest.getSession(true);
         PrintWriter printwriter = httpservletresponse.getWriter();
         String msg = "";
+//delete the admin
 if(action.equals("deladmin")){
                     String adminusername = (String)httpsession.getAttribute("adminusername");
 

@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edid your profile</title>
         <link href="css/styleHRS.css" type="text/css" rel="stylesheet">
-        <script language="Javascript">
+        <script language="Javascript" type="text/javascript">
             function checkpassword(){
        if(document.useredit.oldpassword.value=="")
        {
@@ -35,13 +35,13 @@
                 <tr>
                     <td id="label">old password:</td>
                     <td><label>
-                            <input type="text" name="oldpassword" id="oldpassword">
+                            <input type="password" name="oldpassword" id="oldpassword">
                         </label></td>
                 </tr>
                 <tr>
                     <td id="label">new password:</td>
                     <td><label>
-                            <input type="text" name="newpassword" id="newpassword">
+                            <input type="password" name="newpassword" id="newpassword">
                         </label></td>
                 </tr>
                 <tr>

@@ -38,11 +38,12 @@
 	  </tr>
 
    </table><br>
-	   <%Vector<String[]> order =
+	   <% //get the order list, if null then display no order
+           Vector<String[]> order =
           (Vector<String[]>)request.getAttribute("order");
        if(order==null||order.size()==0){
 	     out.println("<center>");
-	     out.println("<font color=red size=5>no order</font>");
+	     out.println("<font>no order</font>");
 	     out.println("<br><br><a href="+
 	       "orderserv?action=allOrders&&condition=1>return</a></center>");
 	    }
@@ -58,7 +59,7 @@
 	   <th id="thlabel">PS</th>
            <th id="thlabel">excute order</th>
 	 </tr>
-	   <%
+	   <% //get the order information into array
 	  	 for(int i=0;i<order.size();i++){
 		   String[] s = order.get(i);%>
 
@@ -71,8 +72,9 @@
 	   <td>
 	    <a target="blank" href=orderserv?action=ListDetail&&orderid=<%= s[0] %>>order detail</a>
 	   </td>
-	   <form action="orderserv" method="post">
+               <form action="orderserv" method="post">
 	   <td>
+
 	      <input type="text" name="reason" size="10" value=<%= s[5] %>>
 	   </td><td align="center">
 	     <select name="status">

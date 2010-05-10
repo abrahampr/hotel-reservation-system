@@ -1,16 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package serv;
+
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-/**
- *
- * @author Wang Qichen
- */
+
 public class logoutserv extends HttpServlet{
     public void init(ServletConfig servletconfig) throws ServletException {
         super.init(servletconfig);
@@ -25,7 +18,10 @@ public class logoutserv extends HttpServlet{
         HttpSession httpsession = httpservletrequest.getSession(true);
         PrintWriter printwriter = httpservletresponse.getWriter();
         String msg = "";
+
+//lougout functions
         if(action.equals("logout")){
+//remove all possible account Attribute.
 			httpsession.removeAttribute("username");
                         httpsession.removeAttribute("adminroot");
                         httpsession.removeAttribute("adminusername");

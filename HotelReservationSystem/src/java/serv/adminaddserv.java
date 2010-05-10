@@ -7,10 +7,8 @@ package serv;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-/**
- *
- * @author Administrator
- */
+
+
 public class adminaddserv extends HttpServlet{
     public void init(ServletConfig servletconfig) throws ServletException {
         super.init(servletconfig);
@@ -25,6 +23,7 @@ public class adminaddserv extends HttpServlet{
         HttpSession httpsession = httpservletrequest.getSession(true);
         PrintWriter printwriter = httpservletresponse.getWriter();
         String msg = "";
+//add an admin
             if(action.equals("adminadd")){
 			String adminusername = httpservletrequest.getParameter("adminusername");
 			String adminpassword = httpservletrequest.getParameter("adminpassword");

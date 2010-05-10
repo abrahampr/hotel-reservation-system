@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package serv;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-/**
- *
- * @author Wang Qichen
- */
+
 public class admineditserv extends HttpServlet{
     public void init(ServletConfig servletconfig) throws ServletException {
         super.init(servletconfig);
@@ -25,6 +17,7 @@ public class admineditserv extends HttpServlet{
         HttpSession httpsession = httpservletrequest.getSession(true);
         PrintWriter printwriter = httpservletresponse.getWriter();
         String msg = "";
+//edit the admin password
             if(action.equals("adminedit")){
                         String adminusername = httpservletrequest.getParameter("adminusername");
 			String adminoldpassword = httpservletrequest.getParameter("adminoldpassword");
