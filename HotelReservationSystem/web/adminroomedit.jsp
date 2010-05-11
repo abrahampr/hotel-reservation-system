@@ -91,7 +91,7 @@
                                             <select name="roomgroup">
                                                 <% //ergodic the vector
                                                             for (String ss[] : vgroup) {
-                                                                if (ss[0].equals(s[7])) {
+                                                                if (ss[0].equals(s[5])) {
                                                 %>
                                                 <option selected value=<%= ss[0]%>><%= ss[1]%></option>
                                                 <%

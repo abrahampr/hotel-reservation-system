@@ -24,7 +24,7 @@
                   for (String[] s : vgroup) {%>
                 <tr>
                     <td><%= s[1]%></td>
-                    <td><%= s[0]%></td>
+                    <td><%= s[4]%></td>
                     <td><%= s[2]%></td>
                     <td><%= s[3]%></td>
                     <td>
