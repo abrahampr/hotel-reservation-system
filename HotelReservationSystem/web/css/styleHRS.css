@@ -1,11 +1,12 @@
 #navigator { background-color:#999; font-family:Verdana, Geneva, sans-serif; background-image:url(../image/navigator.jpg)}
 #menu { text-indent: 1em; font-family:Arial, Helvetica, sans-serif; background-image:url(../image/menu.jpg)}
-#label { font-family:Georgia, "Times New Roman", Times, serif; text-align:right}
+#label { font-family:Georgia, "Times New Roman", Times, serif; text-align:right;}
 legend { font-family:Arial, Helvetica, sans-serif; font-size:20px;}
-#thlabel { font-family:Georgia, "Times New Roman", Times, serif; text-align:center }
-#sidebar { margin-top:-220px; }
+#thlabel { font-family:Georgia, "Times New Roman", Times, serif; text-align:center; background-image:url(../image/menu.jpg)}
+#sidebar { margin-top:-14em;  }
 #maintitle { background-image:url(../image/maintitle.png); background-repeat:no-repeat; background-position:center; padding-left: 3em}
 #maincontent { background-image:url(../image/maincontent.png); background-position:center; background-repeat:repeat-y; padding-left: 3em; padding-right: 3em}
 #main { margin-top:1em;}
 #indextable { margin: 1em; padding: 1em;}
 #widthdiv { width: 400px;}
+#sidebarset { padding-bottom: 0; padding-left: 0}

@@ -7,6 +7,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Index</title>
         <link href="css/styleHRS.css" type="text/css" rel="stylesheet">
+        <!--[if lt IE 7]>
+        <style type="text/css">
+        #sidebar { margin-top:1em; }
+        #sidebarset { padding-bottom: 22em; padding-left:10px;padding-right:10px;}
+        </style>
+<![endif]-->
     </head>
     <body>
         <div align="center">
@@ -17,9 +23,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td id="sidebar" width="200" bgcolor="#CCCCCC">
+                    <td id="sidebar" width="200" bgcolor="#CCCCCC"><div id="sidebarset">
                         <%if (session.getAttribute("username") == null && session.getAttribute("adminusername") == null && session.getAttribute("adminroot") == null) {/* check the user account, if null */%>
-                        <table id="sidebar" width="200"><tr><td id="navigator"><strong>Welcome, Guest :<br>
+                        <table id="sidebar" width="200" align="center"><tr><td id="navigator"><strong>Welcome, Guest :<br>
                                     </strong></td></tr>
                             <tr><td id="menu"><a href=login.jsp>Sign in</a></td></tr>
                             <tr><td id="menu"><a href="reg.jsp">Sign up</a></td></tr></table>
@@ -50,7 +56,7 @@
                             <tr><td id="menu"><a href=adminmanage.jsp>manage admin</a></td></tr>
                             <tr><td id="menu"><a href=adminedit.jsp>edit password</a></td></tr>
                             <tr><td id="menu"><a href=logoutserv?action=logout>Logout</a></td></tr></table>
-                            <%}%>
+                            <%}%></div>
                     </td>
                     <td width="808" height="300">
                         <table id="main" width="90%" border="0" align="center">

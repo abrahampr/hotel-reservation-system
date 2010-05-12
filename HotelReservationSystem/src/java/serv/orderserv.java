@@ -36,13 +36,12 @@ public class orderserv extends HttpServlet {
 //action equals order,will make a list from database and output
         if (action.equals("order")) {
             if (username == null) {
-                msg = "you are not login yet。<br><br>"
-                        + "<a href=login.jsp>login now?>>";
+                msg = "you are not login yet。<br><br><a href=login.jsp>login now";
                 httpservletrequest.setAttribute("msg", msg);
                 httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest, httpservletresponse);
             } else {
 //Sql syntax, find the users order.
-                String sql = "select * from orders where orderuser='" + username + "'";
+                String sql = "select * from USER_ORDER where USER_Name='" + username + "'";
                 Vector<String[]> list = orderdatabase.getOrderList(sql);
 //print result to attribute list
                 httpservletrequest.setAttribute("list", list);
@@ -76,7 +75,7 @@ public class orderserv extends HttpServlet {
                 s[3] = endtime;
                 OrderList.add(s);
                 session.setAttribute("OrderList", OrderList);
-                msg = "Reservation successful!<br><br><a href=roomgrouplist.jsp>continue?</a> or <a href=index.jsp>return</a>";
+                msg = "Your order now has been in your order list<br><br><a href=userorder.jsp>Go to my order</a>,<a href=roomgrouplist.jsp>continue</a> or <a href=index.jsp>return</a>";
             }
             httpservletrequest.setAttribute("msg", msg);
             httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest, httpservletresponse);
@@ -102,15 +101,12 @@ public class orderserv extends HttpServlet {
                 if (orderdatabase.addOrder(username, OrderList) != -1) {
 //empty the OrderList session.
                     OrderList.removeAllElements();
-                    msg = "Success!<br><br>"
-                            + "<a href=index.jsp>return";
+                    msg = "Success! The administrator will confirm in several times.<br><br><a href=index.jsp>return</a>";
                 } else {
-                    msg = "Sorry,crashed!<br><br>"
-                            + "<a href=index.jsp>return";
+                    msg = "Sorry,crashed! Please call the administrator to solve this problem<br><br><a href=index.jsp>return</a>";
                 }
             } else {
-                msg = "you are not login yet。<br><br>"
-                        + "<a href=login.jsp>login>>";
+                msg = "you are not login yet。<br><br><a href=login.jsp>login now";
             }
             httpservletrequest.setAttribute("msg", msg);
             httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest, httpservletresponse);
@@ -125,15 +121,15 @@ public class orderserv extends HttpServlet {
                 switch (conditon) {
                     case 1:
 //show all orders
-                        sql = "select * from orders";
+                        sql = "select * from USER_ORDER";
                         break;
                     case 2:
 //show success/failed order
-                        sql = "select * from orders where status='" + successfully + "' or status='" + failed + "'";
+                        sql = "select * from USER_ORDER where ORDER_Status='" + successfully + "' or ORDER_Status='" + failed + "'";
                         break;
                     case 3:
 //show the orders that has not accpet.
-                        sql = "select * from orders where status='" + accept + "'";
+                        sql = "select * from USER_ORDER where ORDER_Status='" + accept + "'";
                         break;
                 }
                 Vector<String[]> order = orderdatabase.getOrderList(sql);
@@ -159,15 +155,14 @@ public class orderserv extends HttpServlet {
             String orderPS = httpservletrequest.getParameter("reason");
             String status = httpservletrequest.getParameter("status");
             int orderid = Integer.parseInt(httpservletrequest.getParameter("orderid"));
-            String sqla = "update orders set status='" + status + "',orderPS='"
-                    + orderPS + "',applyadmin='" + adminusername + "'where orderid=" + orderid;
-            String sqlb = "update orderdetail set status='" + status + "' where orderid=" + orderid;
+            String sqla = "update USER_ORDER set ORDER_Status='" + status + "',ORDER_PS='"
+                    + orderPS + "',ADMIN_Uname='" + adminusername + "'where ORDER_ID=" + orderid;
+            String sqlb = "update ORDER_DETAIL set ORDER_Status='" + status + "' where ORDER_ID=" + orderid;
             boolean b = database.update(sqla, sqlb);
             if (b == true) {
-                msg = "deal!<br><br>"
-                        + "<a href=orderserv?action=allOrders&&condition=1>return";
+                msg = "Order is deal!<br><br><a href=orderserv?action=allOrders&&condition=1>return</a>";
             } else {
-                msg = "error";
+                msg = "Error!<br><br><a href=orderserv?action=allOrders&&condition=1>return</a>";
             }
             httpservletrequest.setAttribute("msg", msg);
             httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest, httpservletresponse);
@@ -177,7 +172,7 @@ public class orderserv extends HttpServlet {
             Vector<String[]> order = null;
             try {
                 int orderid = Integer.parseInt(httpservletrequest.getParameter("orderid"));
-                String sql = "select * from orders where orderid=" + orderid;
+                String sql = "select * from USER_ORDER where ORDER_ID=" + orderid;
                 order = orderdatabase.getOrderList(sql);
             } catch (NumberFormatException nfe) {
                 order = new Vector<String[]>();

@@ -127,7 +127,7 @@
                                             <input type="submit" value="save" onclick="return checkadminaddroom()">
                                             <input type="reset" value="reset">
                                             <label>
-                                                <input type="button" name="back" id="back" value="back" onclick="window.location.href='index.jsp'">
+                                                <input type="button" name="back" id="back" value="back" onclick="window.location.href='listserv?action=adminList&&groupid=0'">
                                             </label></td>
                                     </tr>
                                 </form>

@@ -28,22 +28,22 @@ public class changeinfoserv extends HttpServlet {
             String telephone = httpservletrequest.getParameter("telephone").trim();
             String sql = null;
             if (realname.equals("") && email.equals("") && telephone.equals("")) {
-                sql = "update user set gender='" + gender + "' where username='" + username + "'";
+                sql = "update USER set USER_Gender='" + gender + "' where USER_Name='" + username + "'";
             } else if (realname.equals("") && email.equals("")) {
-                sql = "update user set gender='" + gender + "',telephone='" + telephone + "' where username='" + username + "'";
+                sql = "update USER set USER_Gender='" + gender + "',USER_Tele='" + telephone + "' where USER_Name='" + username + "'";
             } else if (realname.equals("") && telephone.equals("")) {
-                sql = "update user set gender='" + gender + "',email='" + email + "' where username='" + username + "'";
+                sql = "update USER set USER_Gender='" + gender + "',USER_Email='" + email + "' where USER_Name='" + username + "'";
             } else if (email.equals("") && telephone.equals("")) {
-                sql = "update user set gender='" + gender + "',realname='" + realname + "' where username='" + username + "'";
+                sql = "update USER set USER_Gender='" + gender + "',USER_RealName='" + realname + "' where USER_Name='" + username + "'";
             } else if (realname.equals("")) {
-                sql = "update user set gender='" + gender + "',email='" + email + "',telephone='" + telephone + "' where username='" + username + "'";
+                sql = "update USER set USER_Gender='" + gender + "',USER_Email='" + email + "',USER_Tele='" + telephone + "' where USER_Name='" + username + "'";
             } else if (email.equals("")) {
-                sql = "update user set gender='" + gender + "',realname='" + realname + "',telephone='" + telephone + "' where username='" + username + "'";
+                sql = "update USER set USER_Gender='" + gender + "',USER_RealName='" + realname + "',USER_Tele='" + telephone + "' where USER_Name='" + username + "'";
             } else if (telephone.equals("")) {
-                sql = "update user set gender='" + gender + "',email='" + email + "',realname='" + realname + "' where username='" + username + "'";
+                sql = "update USER set USER_Gender='" + gender + "',USER_Email='" + email + "',USER_RealName='" + realname + "' where USER_Name='" + username + "'";
             } else {
-                sql = "update user set realname ='" + realname + "',gender='" + gender
-                        + "',email='" + email + "',telephone='" + telephone + "' where username='" + username + "'";
+                sql = "update USER set USER_RealName ='" + realname + "',USER_Gender='" + gender
+                        + "',USER_Email='" + email + "',USER_Tele='" + telephone + "' where USER_Name='" + username + "'";
             }
             if (database.update(sql) == 1) {
                 msg = "Success! Your profile has been changed.<br><a href=index.jsp>return</a>";

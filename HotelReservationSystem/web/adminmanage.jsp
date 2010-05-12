@@ -6,6 +6,16 @@
     <head>
         <title>manage admin</title>
         <link href="css/styleHRS.css" type="text/css" rel="stylesheet">
+        <script language="javascript" type="text/javascript">
+            function check_confirm(){
+            var c=confirm("Are you really want to delete this administrator?");
+            if(c==true){
+                return true;
+            } else {
+                return false;
+            }
+        }
+            </script>
     </head>
     <body><div align="center">
             <table>
@@ -35,7 +45,7 @@
                                 <td>advanced</td>
                                 <% }%>
                                 <td>
-                                    <a href=admindelserv?action=deladmin&&adminusername=<%= s[0]%>>Del</a>
+                                    <a onclick="return check_confirm()" href=admindelserv?action=deladmin&&adminusername=<%= s[0]%>>Del</a>
                                 </td>
                             </tr>
                             <%

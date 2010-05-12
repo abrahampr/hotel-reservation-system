@@ -45,6 +45,14 @@
                 }
                 document.searchRes.submit();
             }
+            function check_confirm(){
+                var c=confirm("Do you really want to delete this room?")
+                if(c==true){
+                    return true;
+                } else {
+                 return false;
+                }
+            }
         </script>
     </head>
     <body><div align="center"><fieldset><legend>Edit Room informaion</legend>
@@ -69,8 +77,9 @@
                                     <td>Room:
                                         <form name="searchRes" action="listserv" method="post">
                                             <input type="text" name="roomname">
+                                             <input type="hidden" name="action" value="searchRoom">
                                             <input type="button" value="check" onclick="return check()">
-                                            <input type="hidden" name="action2" value="queryRes">
+
                                         </form></td>
                                 </tr>
                             </table></td></tr>
@@ -142,8 +151,8 @@
                                             <input type="hidden" name="action" value="deleteRes">
                                             <input type="hidden" name="roomid" value=<%= s[6]%>>
                                             <input type="hidden" name="oldroomname" value=<%= s[0]%>>
-                                            <input type="button" value="save" onclick="check2()">
-                                            <input type="submit" value="delete">
+                                            <input type="button" value="save" onclick="return check2()">
+                                            <input type="submit" value="delete" onclick="return check_confirm()">
                                             <input type="button" name="back" id="back" value="back" onclick="window.location.href='adminroom.jsp'"></td>
                                     </tr>
                                 </form>

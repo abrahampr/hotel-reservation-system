@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package serv;
 import java.io.*;
 import javax.servlet.*;
@@ -27,9 +22,8 @@ public class adminaddserv extends HttpServlet{
             if(action.equals("adminadd")){
 			String adminusername = httpservletrequest.getParameter("adminusername");
 			String adminpassword = httpservletrequest.getParameter("adminpassword");
-			String sql = "insert into admin values"+
-			  			 "(NULL,'"+adminusername+"','"+adminpassword+"','advanced')";
-			String sqla = "select * from admin where adminusername='"+adminusername+"'";
+			String sql = "insert into ADMINISTRATOR values(NULL,'"+adminusername+"','"+adminpassword+"','advanced')";
+			String sqla = "select * from ADMINISTRATOR where ADMIN_Uname='"+adminusername+"'";
 			if(database.isExist(sqla)){
 				msg = "Error! the admin username has been existed!<a href=adminlogin.jsp>return to register again!</a>";
 			}

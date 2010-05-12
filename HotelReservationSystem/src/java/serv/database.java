@@ -133,7 +133,7 @@ public class database {
         try {
             connection = database.getConnection();
             statement = connection.createStatement();
-            String sql = "select * from roomgroup";
+            String sql = "select * from ROOM_CATEGORY";
             resultset = statement.executeQuery(sql);
             while (resultset.next()) {
                 String group[] = new String[5];
@@ -158,7 +158,7 @@ public class database {
         try {
             connection = database.getConnection();
             statement = connection.createStatement();
-            String sql = "select groupid,groupname,groupdetails,grouprules,groupimage from roomgroup where groupid=" + groupid;
+            String sql = "select CATE_ID,CATE_Name,CATE_Detail,CATE_Rule,CATE_Image from ROOM_CATEGORY where CATE_ID=" + groupid;
             resultset = statement.executeQuery(sql);
             if (resultset.next()) {
                 //made the data from database into vector
@@ -201,9 +201,9 @@ public class database {
             connection = database.getConnection();
             statement = connection.createStatement();
             if (group == 0) {
-                sql = "select count(*) from room";
+                sql = "select count(*) from ROOM";
             } else {
-                sql = "select count(*) from room " + "where roomgroup='" + group + "'";
+                sql = "select count(*) from ROOM " + "where CATE_ID='" + group + "'";
             }
             resultset = statement.executeQuery(sql);
             resultset.next();
@@ -229,13 +229,13 @@ public class database {
             connection = database.getConnection();
             statement = connection.createStatement();
             if (group == 0) {
-                sql = "select roomname,style,cost,details,status,roomid,groupname from "
-                        + "room,roomgroup where room.roomgroup=roomgroup.groupid order "
-                        + "by roomgroup, roomname, roomid";
+                sql = "select ROOM_Name,ROOM_Style,ROOM_Cost,ROOM_Detail,ROOM_Status,ROOM_ID,CATE_Name from "
+                        + "ROOM,ROOM_CATEGORY where ROOM.CATE_ID=ROOM_CATEGORY.CATE_ID order "
+                        + "by ROOM.CATE_ID, ROOM_Name, ROOM_ID";
             } else {
-                sql = "select roomname,style,cost,details,status,roomid,groupname "
-                        + "from room,roomgroup where room.roomgroup=roomgroup.groupid "
-                        + "and roomgroup='" + group + "' order by roomname";
+                sql = "select ROOM_Name,ROOM_Style,ROOM_Cost,ROOM_Detail,ROOM_Status,ROOM_ID,CATE_Name "
+                        + "from ROOM,ROOM_CATEGORY where ROOM.CATE_ID=ROOM_CATEGORY.CATE_ID "
+                        + "and ROOM.CATE_ID='" + group + "' order by ROOM_Name";
             }
             resultset = statement.executeQuery(sql);
 //if start Row is not null, resultset set to the start row
@@ -293,7 +293,7 @@ public class database {
         try {
             connection = database.getConnection();
             statement = connection.createStatement();
-            resultset = statement.executeQuery("select adminusername,authority from admin");
+            resultset = statement.executeQuery("select ADMIN_Uname,ADMIN_Authority from ADMINISTRATOR");
             while (resultset.next()) {
                 String s[] = new String[2];
                 s[0] = new String(resultset.getString(1));
@@ -325,7 +325,7 @@ public class database {
                 v.add(s);
             }
             for (String s[] : v) {
-                String sqlb = "select groupname from roomgroup where groupid='" + s[5] + "'";
+                String sqlb = "select CATE_Name from ROOM_CATEGORY where CATE_ID='" + s[5] + "'";
                 resultset = statement.executeQuery(sqlb);
                 resultset.next();
                 s[7] = new String(resultset.getString(1));

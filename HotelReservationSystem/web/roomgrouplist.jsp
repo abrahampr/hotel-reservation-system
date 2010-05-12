@@ -17,19 +17,35 @@
         <link href="css/styleHRS.css" type="text/css" rel="stylesheet">
         <script language="JavaScript" type="text/javascript">
             function checktime(){
-                if(document.order.startyear.value>document.order.finishyear.value){
+                var startyear = document.order.startyear.value;
+                var startmonth = document.order.startmonth.value;
+                var startday = document.order.startday.value;
+                var finishyear = document.order.finishyear.value;
+                var finishmonth = document.order.finishmonth.value;
+                var finishday = document.order.finishday.value;
+                if(startyear>finishyear){
                     alert ("year time is not correct!");
                     return false;
                 }
-                if(document.order.startyear.value==document.order.finishyear.value && document.order.startmonth.value>document.order.finishmonth.value){
+                if(startyear==finishyear && startmonth>finishmonth){
                     alert ("month time is not correct!");
                     return false;
                 }
-                if(document.order.startyear.value==document.order.finishyear.value && document.order.startmonth.value==document.order.finishmonth.value && document.order.startday.value>=document.order.finishday.value){
-                    alert ("start day must not same as end day!");
+                if (startmonth==finishmonth && finishday<startday){
+                   alert ("checkin time must not later than checkout time!");
                     return false;
                 }
-                document.add.submit();
+                if (startmonth==finishmonth && finishday==startday){
+                   alert ("checkin time must not same as checkout time!");
+                    return false;
+                }
+                var c=confirm("This will take the order in your order list"+'\n'+"Will you Confirm?");
+                if(c==true){
+                   return true;
+                }else {
+                   return false;
+                }
+                document.order.submit();
             }
         </script>
     </head>
@@ -137,41 +153,41 @@
                                 %>
                                 <tr>
                                     <td id="label">
-  	  start time:
+  	  check in:
                                     </td>
                                     <td>
                                         <select name="startyear">
                                             <option selected><%=year%></option>
-                                            <option><%=year + 1%></option>
                                         </select>year
 
                                         <select name="startmonth">
-                                            <%
-                                                        for (int i = 1; i < 13; i++) {
-                                                            if (i != month) {
-                                            %>
-                                            <option><%=i%></option>
-                                            <%
-                                                                                                        } else {
-                                            %>
-                                            <option selected><%=i%></option>
-                                            <%
-                                                                                                        }
-                                            %>
-                                            <%
-                                                        }
-                                            %>
+                                            <option selected><%=month%></option>
+                                            <option><%=month + 1%></option>
                                         </select>month
 
                                         <select name="startday">
                                             <%
-                                                        for (int i = 1; i < 32; i++) {
+                                            int daystatus=0;
+                                            if(month==1 || month ==3 || month ==5 || month ==7 || month ==8 || month ==10 || month ==12){
+                                            daystatus=32;
+                                            }
+                                            if(month==4 || month ==6 || month ==9 || month ==11){
+                                            daystatus=31;
+                                            }
+                                            if(year%4==0){
+                                            daystatus=29;
+                                            }
+                                            if(year%4!=0){
+                                            daystatus=28;
+                                            }%>
+                                            <option  selected><%= day %></option>
+                                                   <%     for (int i = day; i < daystatus; i++) {
                                                             if (i != day) {%>
                                             <option><%=i%></option>
                                             <%
                                                                                                         } else {
                                             %>
-                                            <option selected><%=i%></option>
+                                            continue;
                                             <%
                                                             }
                                                         }
@@ -180,14 +196,14 @@
 
                                         <select name="starthour">
                                             <%
-                                                        for (int i = 0; i < 24; i++) {
+                                                        for (int i = hour; i < 24; i++) {
                                                             if (i != hour) {
                                             %>
                                             <option><%=i%></option>
                                             <%
                                                                                                         } else {
                                             %>
-                                            <option selected><%=i%></option>
+                                            <option  selected><%=i%></option>
                                             <%
                                                             }
                                                         }
@@ -197,41 +213,32 @@
                                 </tr>
                                 <tr>
                                     <td id="label">
-  	  finish time:
+  	  check out:
                                     </td>
                                     <td>
                                         <select name="finishyear">
-                                            <option selected><%= year%></option>
+                                            <option  selected><%= year%></option>
                                             <option><%= year + 1%></option>
-                                        </select>Year
+                                        </select>year
 
                                         <select name="finishmonth">
-                                            <%
-                                                        for (int i = 1; i < 13; i++) {
-                                                            if (i != month) {
-                                            %>
-                                            <option><%= i%></option>
-                                            <%
-                                                                                                        } else {
-                                            %>
-                                            <option selected><%= i%></option>
-                                            <%
-                                                            }
-                                                        }
-                                            %>
+                                            <option  selected><%= month%></option>
+                                            <option><%= month + 1%></option>
+                                            <option><%= month + 2%></option>
                                         </select>month
 
                                         <select name="finishday">
+                                            <option  selected><%= day + 1 %></option>
                                             <%
-                                                        for (int i = 1; i < 32; i++) {
-                                                            if (i != day) {
+                                                        for (int i = 1; i < daystatus; i++) {
+                                                            if (i != day+1) {
                                             %>
                                             <option><%= i%></option>
                                             <%
                                                                                                         } else {
                                             %>
-                                            <option selected><%= i%></option>
-                                            <%
+                                            
+                                            <%continue;
                                                             }
                                                         }
                                             %>
@@ -239,7 +246,7 @@
 
                                         <select name="finishhour">
                                             <%
-                                                        for (int i = 0; i < 24; i++) {
+                                                        for (int i = 1; i < 24; i++) {
                                                             if (i != hour) {
                                             %>
                                             <option><%= i%></option>

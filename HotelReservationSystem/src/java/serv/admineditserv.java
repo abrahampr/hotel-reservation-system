@@ -22,7 +22,7 @@ public class admineditserv extends HttpServlet{
                         String adminusername = httpservletrequest.getParameter("adminusername");
 			String adminoldpassword = httpservletrequest.getParameter("adminoldpassword");
 			String adminnewpassword = httpservletrequest.getParameter("adminnewpassword");
-			String sql = "select adminpassword from admin where adminusername='"+adminusername+"'";
+			String sql = "select ADMIN_PW from ADMINISTRATOR where ADMIN_Uname='"+adminusername+"'";
 			String databasepassword = database.getInfo(sql);
 			if(databasepassword==null){
 				msg = "invalid admin account<a href=adminmanage.jsp>return</a>";
@@ -31,7 +31,7 @@ public class admineditserv extends HttpServlet{
 				msg = "your password as same as your current password!<a href=adminmanage.jsp>return</a>";
 			}
 			else{
-				sql = "update admin set adminpassword='"+adminnewpassword+"' where adminusername='"+adminusername+"'";
+				sql = "update ADMINISTRATOR set ADMIN_PW='"+adminnewpassword+"' where ADMIN_Uname='"+adminusername+"'";
 				if(database.update(sql)>0){
 					msg = "Edit Successed!<a href=adminmanage.jsp>return</a>";
 				}

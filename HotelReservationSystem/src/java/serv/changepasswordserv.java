@@ -22,10 +22,10 @@ public class changepasswordserv extends HttpServlet{
 			String username=(String)httpsession.getAttribute("username");
 			String oldpassword = httpservletrequest.getParameter("oldpassword").trim();
 			String newpassword = httpservletrequest.getParameter("newpassword").trim();
-			String sqla = "select password from user where username='"+username+"'";
+			String sqla = "select USER_PW from USER where USER_Name='"+username+"'";
 			String DBpwd =  database.getInfo(sqla);
 			if(oldpassword.equals(DBpwd)){
-				String sqlb = "update user set password='"+newpassword+"'where username='"+
+				String sqlb = "update USER set USER_PW='"+newpassword+"'where USER_Name='"+
 								username+"'";
 				database.update(sqlb);
 				msg = "Success! please login your account with new password next time.<br><a href=index.jsp>return</a>";

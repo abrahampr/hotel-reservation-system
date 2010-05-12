@@ -17,7 +17,7 @@
                 }
                 if(document.groInfo.groupimage.value=="")
                 {
-                    alert("img is null");
+                    alert("image is null");
                     groInfo.groupimage.focus();
                     return false;
                 }
@@ -35,6 +35,14 @@
                 }
                 document.groInfo.action.value="changeGroup";
                 document.groInfo.submit();
+            }
+              function check_confirm(){
+                var c=confirm("Do you really want to delete this room?")
+                if(c==true){
+                    return true;
+                } else {
+                 return false;
+                }
             }
         </script>
     </head>
@@ -76,7 +84,7 @@
                                 <input type="hidden" name="groupid" value=<%= groupinfo.get(0)%> >
                                 <input type="hidden" name="oldgroupname" value=<%= groupinfo.get(1)%>>
                                 <input type="button" value="save" onclick="return check()">
-                                <input type="submit" value="delete">
+                                <input type="submit" value="delete"onclick="return check_confirm()">
                                 <input type="button" name="back" id="back" value="back" onclick="window.location.href='adminroomgroup.jsp'"></td>
                         </tr>
                     </form>

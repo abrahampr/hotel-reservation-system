@@ -18,14 +18,14 @@ public class orderdatabase {
             String roomname = new String(rname);
             connection = database.getConnection();
             statement = connection.createStatement();
-            resultset = statement.executeQuery("select roomname from orderdetail where status='"
-                    + apply + "' and roomname='" + roomname + "'");
+            resultset = statement.executeQuery("select ROOM_Name from ORDER_DETAIL where ORDER_Status='"
+                    + apply + "' and ROOM_Name='" + roomname + "'");
 //if the room is waiting for apply then user cannot reservate it.
             if (resultset.next()) {
                 b = true;
             }
-            resultset = statement.executeQuery("select roomname from room where status='"
-                    + used + "' and roomname='" + roomname + "'");
+            resultset = statement.executeQuery("select ROOM_Name from ROOM where ROOM_Status='"
+                    + used + "' and ROOM_Name='" + roomname + "'");
 //if the room is used then user cannot reservate it.
             if (resultset.next()) {
                 b = true;
@@ -68,15 +68,13 @@ public class orderdatabase {
 			String roomname = new String(getroomname);
 			connection = database.getConnection();
 			statement = connection.createStatement();
-			resultset = statement.executeQuery("select starttime,endtime from orderdetail where status='"+
-								status+"' and roomname='"+roomname+"'");
+			resultset = statement.executeQuery("select CheckIn_Time,CheckOut_Time from ORDER_DETAIL where ORDER_Status='"+
+								status+"' and ROOM_Name='"+roomname+"'");
 //set the value into the string v.
 			while(resultset.next()){
 				String []s =new String[2];
 				s[0] = new String(resultset.getString(1));
-                                System.out.println(s[0]);
 				s[1] = new String(resultset.getString(2));
-                                System.out.println(s[1]);
 				java.util.Date etime = orderdatabase.chageStringToDate(s[1]);
 				java.util.Date now = new java.util.Date();
 				if(etime.after(now)) {v.add(s);}
@@ -106,7 +104,7 @@ public class orderdatabase {
 	{
 		int i = 0;
 //recall getId in database servlet and get the result into orderid.
-		int orderid = database.getId("orders","orderid");
+		int orderid = database.getId("USER_ORDER","ORDER_ID");
 		try{
 			connection = database.getConnection();
 			statement = connection.createStatement();
@@ -114,14 +112,14 @@ public class orderdatabase {
 			String ordertime = d.toLocaleString();
 //stop the program auto submit the sql syntax into database.
 			connection.setAutoCommit(false);
-                        String sqla = "INSERT INTO orders (orderid,orderuser,ordertime) VALUES (NULL,'"+orderuser+"','"+ordertime+"')";
+                        String sqla = "INSERT INTO USER_ORDER (ORDER_ID,User_Name,ORDER_Time) VALUES (NULL,'"+orderuser+"','"+ordertime+"')";
 			statement.executeUpdate(sqla);
 			Vector<String> sqlb = new Vector<String>();
 			for(String []s:OrderList){
 				String roomname = s[0];
 				String starttime = s[2];
                                 String endtime = s[3];
-				String sqlc = "insert into orderdetail (detailid,orderid,roomname,starttime,endtime) values (NULL,"+orderid+",'"+roomname+"','"+starttime+"','"+endtime+"')";
+				String sqlc = "insert into ORDER_DETAIL (DETAIL_ID,ORDER_ID,ROOM_Name,CheckIn_Time,CheckOut_Time) values (NULL,"+orderid+",'"+roomname+"','"+starttime+"','"+endtime+"')";
 				statement.executeUpdate(sqlc);
 			}
 			connection.commit();
@@ -144,7 +142,7 @@ public class orderdatabase {
 		try{
 			connection = database.getConnection();
 			statement = connection.createStatement();
-			resultset = statement.executeQuery("select roomname,starttime,endtime,status from orderdetail where orderid='"+orderid+"'");
+			resultset = statement.executeQuery("select ROOM_Name,CheckIn_Time,CheckOut_Time,ORDER_Status from ORDER_DETAIL where ORDER_ID='"+orderid+"'");
 //get the orderdetail information into vector v.
                         while(resultset.next()){
 				String s[] = new String[5];
@@ -156,8 +154,12 @@ public class orderdatabase {
 //set values into v from string s
 			for(String[] s:v){
 				String roomname = new String(s[0]);
-				resultset = statement.executeQuery("select groupname from roomgroup where groupid=("+
-							"select roomgroup from room where roomname='"+roomname+"')");
+                                if(roomname.equals("")){
+
+
+                                }
+				resultset = statement.executeQuery("select CATE_Name from ROOM_CATEGORY where CATE_ID=("+
+							"select CATE_ID from ROOM where ROOM_Name='"+roomname+"')");
 				resultset.next();
 				s[4] = new String(resultset.getString(1));
 			}

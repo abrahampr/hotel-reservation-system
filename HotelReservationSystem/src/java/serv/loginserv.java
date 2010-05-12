@@ -25,10 +25,10 @@ public class loginserv extends HttpServlet {
             httpsession.removeAttribute("adminroot");
             String username = httpservletrequest.getParameter("username").trim();
             String pserwd = httpservletrequest.getParameter("password").trim();
-            String sqla = "select * from user where username='" + username + "'";
+            String sqla = "select * from USER where USER_Name='" + username + "'";
 //check the username exist.
             if (database.isExist(sqla)) {
-                String sql = "select password from user where username='" + username + "'";
+                String sql = "select USER_PW from USER where USER_Name='" + username + "'";
                 String password = database.getInfomation(sql).trim();
 //check the password
                 if (pserwd.equals(password)) {
@@ -57,10 +57,10 @@ public class loginserv extends HttpServlet {
             String Advanced = "advanced";
             String adminusername = httpservletrequest.getParameter("username").trim();
             String adminpwd = httpservletrequest.getParameter("password").trim();
-            String sqla = "select adminpassword from admin where adminusername='" + adminusername + "'";
+            String sqla = "select ADMIN_PW from ADMINISTRATOR where ADMIN_Uname='" + adminusername + "'";
             String dbpwd = database.getInfo(sqla);
             if (dbpwd != null && adminpwd.equals(dbpwd)) {
-                String sqlb = "select authority from admin where adminusername='" + adminusername + "'";
+                String sqlb = "select ADMIN_Authority from ADMINISTRATOR where ADMIN_Uname='" + adminusername + "'";
                 String authority = database.getInfo(sqlb);
 //check the admin authority
                 if (authority.equals(root.intern())) {

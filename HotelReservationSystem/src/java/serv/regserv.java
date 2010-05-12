@@ -29,13 +29,13 @@ public class regserv extends HttpServlet {
             String email = httpservletrequest.getParameter("email").trim();
             String telephone = httpservletrequest.getParameter("telephone").trim();
 //Sql syntax,find if there has the same user
-            String sqla = "select * from user where username='" + username + "'";
+            String sqla = "select * from USER where USER_Name='" + username + "'";
             if (database.isExist(sqla)) {
 //output information
                 msg = username + ": has been existed try another one!!!<br/><a href=reg.jsp>return to the register page!</a>";
             } else {
 //sql syntax, insert user value
-                String sql = "insert into user values (NULL,'" + username + "','" + password + "','" + realname + "','" + gender + "','" + email + "','" + telephone + "')";
+                String sql = "insert into USER values (NULL,'" + username + "','" + password + "','" + realname + "','" + gender + "','" + email + "','" + telephone + "')";
                 database.update(sql);
                 msg = "Congratulations,username:" + username + " is our membership now !!!<br/><a href=login.jsp>now login???</a>";
             }

@@ -28,7 +28,7 @@ if(action.equals("deladmin")){
 				msg = "ID is yourself";
 			}
 			else{
-				String sql = "delete from admin where adminusername='"+cadminusername+"'";
+				String sql = "delete from ADMINISTRATOR where ADMIN_Uname='"+cadminusername+"'";
 				database.update(sql);
 				msg = "delete!<a href=adminmanage.jsp>return</a>";
 			}
