@@ -23,22 +23,22 @@
                 var finishyear = document.order.finishyear.value;
                 var finishmonth = document.order.finishmonth.value;
                 var finishday = document.order.finishday.value;
-                if(startyear>finishyear){
-                    alert ("year time is not correct!");
+                var starthour = document.order.starthour.value;
+                var finishhour = document.order.starthour.value;
+                var startdate = new Date();
+                startdate.setFullYear(startyear,startmonth,startday)
+                startdate.setHours(starthour,0,0)
+                var finishdate = new Date();
+                finishdate.setFullYear(finishyear,finishmonth,finishday)
+                finishdate.setHours(finishhour,0,0)
+                if(startdate>finishdate){
+                    alert("your time is wrong value");
                     return false;
                 }
-                if(startyear==finishyear && startmonth>finishmonth){
-                    alert ("month time is not correct!");
-                    return false;
-                }
-                if (startmonth==finishmonth && finishday<startday){
-                   alert ("checkin time must not later than checkout time!");
-                    return false;
-                }
-                if (startmonth==finishmonth && finishday==startday){
-                   alert ("checkin time must not same as checkout time!");
-                    return false;
-                }
+               if(eval(startyear)==eval(finishyear) && eval(startmonth)==eval(finishmonth) && eval(startday)==eval(finishday)){
+                     alert("You can not reservation a room in same day!");
+                    return false;            
+               }
                 var c=confirm("This will take the order in your order list"+'\n'+"Will you Confirm?");
                 if(c==true){
                    return true;
@@ -162,7 +162,8 @@
 
                                         <select name="startmonth">
                                             <option selected><%=month%></option>
-                                            <option><%=month + 1%></option>
+                                            <% int month1=month+1;%>
+                                            <option><%=month1%></option>
                                         </select>month
 
                                         <select name="startday">
@@ -170,13 +171,13 @@
                                             int daystatus=0;
                                             if(month==1 || month ==3 || month ==5 || month ==7 || month ==8 || month ==10 || month ==12){
                                             daystatus=32;
-                                            }
+                                            } else
                                             if(month==4 || month ==6 || month ==9 || month ==11){
                                             daystatus=31;
-                                            }
+                                            } else
                                             if(year%4==0){
                                             daystatus=29;
-                                            }
+                                            } else
                                             if(year%4!=0){
                                             daystatus=28;
                                             }%>
@@ -223,19 +224,23 @@
 
                                         <select name="finishmonth">
                                             <option  selected><%= month%></option>
-                                            <option><%= month + 1%></option>
-                                            <option><%= month + 2%></option>
+                                            <%int month2=month+2;%>
+                                            <option><%= month1%></option>
+                                            <option><%= month2%></option>
                                         </select>month
 
                                         <select name="finishday">
-                                            <option  selected><%= day + 1 %></option>
+                                            <% int finishdays;
+                                                    finishdays = day+1;
+                                            %>
+                                            <option  selected><%= finishdays %></option>
                                             <%
                                                         for (int i = 1; i < daystatus; i++) {
-                                                            if (i != day+1) {
+                                                            if (i != finishdays) {
                                             %>
                                             <option><%= i%></option>
                                             <%
-                                                                                                        } else {
+                                                       } else {
                                             %>
                                             
                                             <%continue;
