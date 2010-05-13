@@ -93,7 +93,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-			1.You can be up to 2 month in advance reservation<br>
+			1.You can be up to 3 month in advance reservation<br>
 			2.A room reservation for up 1 year<br>
 			3.<%= grouprules%>
                                             <td>
@@ -136,11 +136,21 @@
                                     <td>
                                         <select id="startyear" name="startyear">
                                             <option selected><%=year%></option>
+                                            <%if(month==11 || month==12){%>
+                                            <option><%= year+1%></option>
+                                            <%}%>
                                         </select>year
 
                                         <select id="startmonth" name="startmonth">
-                                            <option selected><%=month%></option>
-                                            <option><%=month+1%></option>
+                                            <% 
+                                            
+                                            for(int i=1; i<13; i++){
+                                                if(i==month){
+                                            %> <option selected><%=i %></option> <%
+                                               } else {%>
+                                               <option><%=i %></option>
+                                               <%}
+                                             }%>
                                         </select>month
 
                                         <select id="startday" name="startday">
@@ -158,14 +168,13 @@
                                             if(year%4!=0){
                                             daystatus=28;
                                             }%>
-                                            <option  selected><%= day %></option>
-                                            <%     for (int i = day; i < daystatus; i++) {
+                                            <%     for (int i = 1; i < daystatus; i++) {
                                                             if (i != day) {%>
                                             <option><%=i%></option>
                                             <%
-                                                                                                        } else {
+                                               } else {
                                             %>
-                                            continue;
+                                            <option selected><%=i%></option>
                                             <%
                                                             }
                                                         }
@@ -174,7 +183,7 @@
 
                                         <select id="starthour" name="starthour">
                                             <%
-                                                        for (int i = hour; i < 24; i++) {
+                                                        for (int i = 0; i < 24; i++) {
                                                             if (i != hour) {
                                             %>
                                             <option><%=i%></option>
@@ -200,9 +209,13 @@
                                         </select>year
 
                                         <select id="finishmonth" name="finishmonth">
-                                            <option  selected><%= month%></option>
-                                            <option><%= month+1%></option>
-                                            <option><%= month+2%></option>
+                                            <% for(int i=1;i<13;i++){ %>
+                                            <%if(i!=month){ %>
+                                             <option><%= i%></option>
+                                           <% } else { %>
+                                           <option selected><%= i %></option>
+                                            <% }
+                                            }%>
                                         </select>month
 
                                         <select id="finishday" name="finishday">
@@ -224,7 +237,7 @@
 
                                         <select id="finishhour" name="finishhour">
                                             <%
-                                                        for (int i = 1; i < 24; i++) {
+                                                        for (int i = 0; i < 24; i++) {
                                                             if (i != hour) {
                                             %>
                                             <option><%= i%></option>

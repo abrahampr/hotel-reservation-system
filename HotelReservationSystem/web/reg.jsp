@@ -62,8 +62,27 @@
                     reg.email.focus();
                     return false;
                 }
+                var tela=document.reg.telephone.value.indexOf("#")==-1;
+                var telb=document.reg.telephone.value.indexOf("+")==-1;
+                var telc=document.reg.telephone.value.indexOf("*")==-1;
+                var teld=document.reg.telephone.value.indexOf("-")==-1;
+                var tel0=document.reg.telephone.value.indexOf("0")==-1;
+                var tel1=document.reg.telephone.value.indexOf("1")==-1;
+                var tel2=document.reg.telephone.value.indexOf("2")==-1;
+                var tel3=document.reg.telephone.value.indexOf("3")==-1;
+                var tel4=document.reg.telephone.value.indexOf("4")==-1;
+                var tel5=document.reg.telephone.value.indexOf("5")==-1;
+                var tel6=document.reg.telephone.value.indexOf("6")==-1;
+                var tel7=document.reg.telephone.value.indexOf("7")==-1;
+                var tel8=document.reg.telephone.value.indexOf("8")==-1;
+                var tel9=document.reg.telephone.value.indexOf("9")==-1;
                 if(document.reg.telephone.value==""){
                     alert("please input yoru telephone number");
+                    reg.telephone.focus();
+                    return false;
+                }
+                if(tel1 && tel2 && tel3 && tel4 && tel5 && tel6 && tel7 && tel8 && tel9 && tel0 && tela && telb && telc && teld){
+                    alert("your telephone number is invalid");
                     reg.telephone.focus();
                     return false;
                 }

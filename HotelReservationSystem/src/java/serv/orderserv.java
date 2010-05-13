@@ -1,6 +1,7 @@
 package serv;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -60,6 +61,7 @@ public class orderserv extends HttpServlet {
                 String startday = (String) httpservletrequest.getParameter("startday");
                 int sd = Integer.parseInt(startday);
                 String starthour = (String) httpservletrequest.getParameter("starthour");
+                int sh = Integer.parseInt(starthour);
                 String finishyear = (String) httpservletrequest.getParameter("finishyear");
                 int fy = Integer.parseInt(finishyear);
                 String finishmonth = (String) httpservletrequest.getParameter("finishmonth");
@@ -68,32 +70,54 @@ public class orderserv extends HttpServlet {
                 int fd = Integer.parseInt(finishday);
                 String finishhour = (String) httpservletrequest.getParameter("finishhour");
                 String group = (String) httpservletrequest.getParameter("group");
-
-                if((sy<fy && sm<fm) || (sy==fy && sm==fm && sd<fd) || (sy==fy && sm<fm)){
+                Date now = new Date(); //get the time
+                int year = now.getYear() + 1900;
+                int month = now.getMonth() + 1;
+                int day = now.getDate();
+                int hour = now.getHours();
+                if(fy==sy && month<10 && sm>month+3){
+                    msg = "Your order is invalid, we just accept reservation time in 3 month<br><br><a href=roomgrouplist.jsp>return to change time</a>";
+                } else if(fy>year && month==11&& sm>1){
+                    msg = "Your order is invalid, we just accept reservation time in 3 month<br><br><a href=roomgrouplist.jsp>return to change time</a>";
+                }else if(fy>year && month==12 && sm>2){
+                    msg = "Your order is invalid, we just accept reservation time in 3 month<br><br><a href=roomgrouplist.jsp>return to change time</a>";
+                }else
+                if(year==sy && sm<month){
+                 msg="You can't checkin in the past time. Please check your checkin time!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
+                } else
+                if(year==sy && month==sm && day>sd){
+                    msg="You can't checkin in the past time. Please check your checkin time!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
+                } else if(year==sy && month==sm && day==sd && hour>sh){
+                    msg="You can't checkin in the past time. Please check your checkin time!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
+                } else
+                if ((sy < fy)  || (sy == fy && sm == fm && sd < fd) || (sy == fy && sm < fm)) {
 //make the start time and end time.
-                String starttime = startyear + "-" + startmonth + "-" + startday + "-" + starthour + ":" + "00";
-                String endtime = finishyear + "-" + finishmonth + "-" + finishday + "-" + finishhour + ":" + "00";
+                    String starttime = startyear + "-" + startmonth + "-" + startday + "-" + starthour + ":" + "00";
+                    String endtime = finishyear + "-" + finishmonth + "-" + finishday + "-" + finishhour + ":" + "00";
+
+
+
 //make the value into the OrderList attribute.
-                String[] s = new String[4];
-                s[0] = orderNum;
-                s[1] = group;
-                s[2] = starttime;
-                s[3] = endtime;
-                OrderList.add(s);
-                session.setAttribute("OrderList", OrderList);
-                msg = "Your order now has been in your order list<br><br><a href=userorder.jsp>Go to my order</a>,<a href=roomgrouplist.jsp>continue</a> or <a href=index.jsp>return</a>";
-            } else  if(sy>fy){
-                msg = "Year is not valid!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
-                } else if(sy==fy && sm>fm){
-                 msg = "Month is not valid!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
-                }else  if(sy==fy && sm==fm && sd>fd){
-                 msg = "Day is not valid!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
-                }else  if(sy==fy && sm==fm && sd==fd){
-                msg = "Sorry,We don't offer hour room!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
+                    String[] s = new String[4];
+                    s[0] = orderNum;
+                    s[1] = group;
+                    s[2] = starttime;
+                    s[3] = endtime;
+                    OrderList.add(s);
+                    session.setAttribute("OrderList", OrderList);
+                    msg = "Your order now has been in your order list<br><br><a href=userorder.jsp>Go to my order</a>,<a href=roomgrouplist.jsp>continue</a> or <a href=index.jsp>return</a>";
+                } else if (sy > fy) {
+                    msg = "Year is not valid!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
+                } else if (sy == fy && sm > fm) {
+                    msg = "Month is not valid!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
+                } else if (sy == fy && sm == fm && sd > fd) {
+                    msg = "Day is not valid!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
+                } else if (sy == fy && sm == fm && sd == fd) {
+                    msg = "Sorry,We don't offer hour room!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
                 }
-            httpservletrequest.setAttribute("msg", msg);
-            httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest, httpservletresponse);
-        }
+                httpservletrequest.setAttribute("msg", msg);
+                httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest, httpservletresponse);
+            }
         }
 //delete an order
         if (action.equals("delete")) {
