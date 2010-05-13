@@ -25,11 +25,11 @@ public class adminaddserv extends HttpServlet{
 			String sql = "insert into ADMINISTRATOR values(NULL,'"+adminusername+"','"+adminpassword+"','advanced')";
 			String sqla = "select * from ADMINISTRATOR where ADMIN_Uname='"+adminusername+"'";
 			if(database.isExist(sqla)){
-				msg = "Error! the admin username has been existed!<a href=adminlogin.jsp>return to register again!</a>";
+				msg = "Error! the admin username has been existed!<a href=adminadd.jsp>return to register again!</a>";
 			}
 			else{
 				if(database.update(sql)>0)
-				msg = "Admin register success!<a href=adminadd.jsp>return to login</a>";
+				msg = "Admin register success!<a href=adminmanage.jsp>back to manage page</a>";
 			}
                         httpservletrequest.setAttribute("msg",msg);
                         httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest, httpservletresponse);

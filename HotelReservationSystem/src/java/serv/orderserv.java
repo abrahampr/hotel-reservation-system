@@ -26,7 +26,7 @@ public class orderserv extends HttpServlet {
 //get the session of username
         String username = (String) session.getAttribute("username");
 //initial the value of reservation
-        String accept = "waiting for accept";
+        String accept = "waiting for apply";
         String successfully = "success";
         String failed = "failed";
 //get the value of orderlist

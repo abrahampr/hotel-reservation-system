@@ -56,7 +56,7 @@
                             if (res == null || res.size() == 0) {
                                 out.println("<center>");
                                 out.println("<font>no room here</font>");
-                                out.println("<br><br><a href=listserv?action=adminList&&groupid=room>return</a></center>");
+                                out.println("<br><br><a href=listserv?action=adminList&&groupid=0>return</a></center>");
                             } else {
                         %>
                         <table align="center" width="80%" cellspacing="1" border="1">

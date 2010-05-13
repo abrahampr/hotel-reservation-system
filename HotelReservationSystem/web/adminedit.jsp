@@ -32,7 +32,7 @@
         </script>
     </head>
     <body>
-        <div align="center"><fieldset><legend>Edit admin accout</legend>
+        <div align="center"><fieldset><legend>Edit admin account</legend>
                 <table>
                     <form name="adminedit" action="admineditserv" method="post">
                         <tr>
