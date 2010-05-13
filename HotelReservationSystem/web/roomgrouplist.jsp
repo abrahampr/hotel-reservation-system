@@ -16,34 +16,12 @@
         <title>Rservation list for <%=groupname%></title>
         <link href="css/styleHRS.css" type="text/css" rel="stylesheet">
         <script language="JavaScript" type="text/javascript">
-            function checktime(){
-                var startyear = document.order.startyear.value;
-                var startmonth = document.order.startmonth.value;
-                var startday = document.order.startday.value;
-                var finishyear = document.order.finishyear.value;
-                var finishmonth = document.order.finishmonth.value;
-                var finishday = document.order.finishday.value;
-                var starthour = document.order.starthour.value;
-                var finishhour = document.order.starthour.value;
-                var startdate = new Date();
-                startdate.setFullYear(startyear,startmonth,startday)
-                startdate.setHours(starthour,0,0)
-                var finishdate = new Date();
-                finishdate.setFullYear(finishyear,finishmonth,finishday)
-                finishdate.setHours(finishhour,0,0)
-                if(startdate>finishdate){
-                    alert("your time is wrong value");
-                    return false;
-                }
-               if(eval(startyear)==eval(finishyear) && eval(startmonth)==eval(finishmonth) && eval(startday)==eval(finishday)){
-                     alert("You can not reservation a room in same day!");
-                    return false;            
-               }
-                var c=confirm("This will take the order in your order list"+'\n'+"Will you Confirm?");
+            function checkorder(){
+                var c=confirm("This will take the order in your order list"+'\n'+"Will you Confirm?"+'\n'+"Invalid date will not be able to submit");
                 if(c==true){
-                   return true;
+                    return true;
                 }else {
-                   return false;
+                    return false;
                 }
                 document.order.submit();
             }
@@ -115,8 +93,8 @@
                                         </tr>
                                         <tr>
                                             <td>
-			1.please input correct reservation time<br>
-			2.please check out the information about the room<br>
+			1.You can be up to 2 month in advance reservation<br>
+			2.A room reservation for up 1 year<br>
 			3.<%= grouprules%>
                                             <td>
                                         </tr>
@@ -156,17 +134,16 @@
   	  check in:
                                     </td>
                                     <td>
-                                        <select name="startyear">
+                                        <select id="startyear" name="startyear">
                                             <option selected><%=year%></option>
                                         </select>year
 
-                                        <select name="startmonth">
+                                        <select id="startmonth" name="startmonth">
                                             <option selected><%=month%></option>
-                                            <% int month1=month+1;%>
-                                            <option><%=month1%></option>
+                                            <option><%=month+1%></option>
                                         </select>month
 
-                                        <select name="startday">
+                                        <select id="startday" name="startday">
                                             <%
                                             int daystatus=0;
                                             if(month==1 || month ==3 || month ==5 || month ==7 || month ==8 || month ==10 || month ==12){
@@ -182,7 +159,7 @@
                                             daystatus=28;
                                             }%>
                                             <option  selected><%= day %></option>
-                                                   <%     for (int i = day; i < daystatus; i++) {
+                                            <%     for (int i = day; i < daystatus; i++) {
                                                             if (i != day) {%>
                                             <option><%=i%></option>
                                             <%
@@ -195,7 +172,7 @@
                                             %>
                                         </select>day
 
-                                        <select name="starthour">
+                                        <select id="starthour" name="starthour">
                                             <%
                                                         for (int i = hour; i < 24; i++) {
                                                             if (i != hour) {
@@ -217,39 +194,35 @@
   	  check out:
                                     </td>
                                     <td>
-                                        <select name="finishyear">
+                                        <select id="finishyear" name="finishyear">
                                             <option  selected><%= year%></option>
                                             <option><%= year + 1%></option>
                                         </select>year
 
-                                        <select name="finishmonth">
+                                        <select id="finishmonth" name="finishmonth">
                                             <option  selected><%= month%></option>
-                                            <%int month2=month+2;%>
-                                            <option><%= month1%></option>
-                                            <option><%= month2%></option>
+                                            <option><%= month+1%></option>
+                                            <option><%= month+2%></option>
                                         </select>month
 
-                                        <select name="finishday">
-                                            <% int finishdays;
-                                                    finishdays = day+1;
-                                            %>
-                                            <option  selected><%= finishdays %></option>
+                                        <select id="finishday" name="finishday">
+
                                             <%
                                                         for (int i = 1; i < daystatus; i++) {
-                                                            if (i != finishdays) {
+                                                            if (i != day+1) {
                                             %>
                                             <option><%= i%></option>
                                             <%
                                                        } else {
-                                            %>
-                                            
-                                            <%continue;
+                                            %><option  selected><%= day+1 %></option>
+
+                                            <%
                                                             }
                                                         }
                                             %>
                                         </select>day
 
-                                        <select name="finishhour">
+                                        <select id="finishhour" name="finishhour">
                                             <%
                                                         for (int i = 1; i < 24; i++) {
                                                             if (i != hour) {
@@ -270,7 +243,7 @@
                                     <td></td>
                                     <td>
                                         <input type="hidden" name="action" value="add">
-                                        <input type="submit" name="add" value="add to order" onclick="return checktime()">
+                                        <input type="submit" name="add" value="add to order" onclick="return checkorder()">
                                         <input type="button" name="back" id="back" value="back" onclick="window.location.href='index.jsp'"></td>
                                 </tr>
                             </form>

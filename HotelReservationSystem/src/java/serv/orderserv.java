@@ -54,16 +54,22 @@ public class orderserv extends HttpServlet {
             if (orderNum != null) {
 //get parameter information
                 String startyear = (String) httpservletrequest.getParameter("startyear");
+                int sy = Integer.parseInt(startyear);
                 String startmonth = (String) httpservletrequest.getParameter("startmonth");
+                int sm = Integer.parseInt(startmonth);
                 String startday = (String) httpservletrequest.getParameter("startday");
+                int sd = Integer.parseInt(startday);
                 String starthour = (String) httpservletrequest.getParameter("starthour");
-
                 String finishyear = (String) httpservletrequest.getParameter("finishyear");
+                int fy = Integer.parseInt(finishyear);
                 String finishmonth = (String) httpservletrequest.getParameter("finishmonth");
+                int fm = Integer.parseInt(finishmonth);
                 String finishday = (String) httpservletrequest.getParameter("finishday");
+                int fd = Integer.parseInt(finishday);
                 String finishhour = (String) httpservletrequest.getParameter("finishhour");
-
                 String group = (String) httpservletrequest.getParameter("group");
+
+                if((sy<fy && sm<fm) || (sy==fy && sm==fm && sd<fd) || (sy==fy && sm<fm)){
 //make the start time and end time.
                 String starttime = startyear + "-" + startmonth + "-" + startday + "-" + starthour + ":" + "00";
                 String endtime = finishyear + "-" + finishmonth + "-" + finishday + "-" + finishhour + ":" + "00";
@@ -76,9 +82,18 @@ public class orderserv extends HttpServlet {
                 OrderList.add(s);
                 session.setAttribute("OrderList", OrderList);
                 msg = "Your order now has been in your order list<br><br><a href=userorder.jsp>Go to my order</a>,<a href=roomgrouplist.jsp>continue</a> or <a href=index.jsp>return</a>";
-            }
+            } else  if(sy>fy){
+                msg = "Year is not valid!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
+                } else if(sy==fy && sm>fm){
+                 msg = "Month is not valid!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
+                }else  if(sy==fy && sm==fm && sd>fd){
+                 msg = "Day is not valid!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
+                }else  if(sy==fy && sm==fm && sd==fd){
+                msg = "Sorry,We don't offer hour room!<br><br><a href=roomgrouplist.jsp>return to change time</a>";
+                }
             httpservletrequest.setAttribute("msg", msg);
             httpservletrequest.getRequestDispatcher("usercheck.jsp").forward(httpservletrequest, httpservletresponse);
+        }
         }
 //delete an order
         if (action.equals("delete")) {
